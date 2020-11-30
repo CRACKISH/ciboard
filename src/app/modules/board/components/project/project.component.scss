@@ -1,5 +1,11 @@
 :host {
+  display: block;
   min-height: 50px;
   min-width: 150px;
   border: 1px solid black;
+  background: green;
+}
+
+.caption-wrap {
+  text-align: center;
 }
