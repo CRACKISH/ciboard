@@ -3,7 +3,18 @@
   min-height: 50px;
   min-width: 150px;
   border: 1px solid black;
-  background: green;
+
+  &.not-initialized {
+    background: gray;
+  }
+
+  &.success {
+    background: green;
+  }
+
+  &.failure {
+    background: red;
+  }
 }
 
 .caption-wrap {

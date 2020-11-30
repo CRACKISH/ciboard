@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, HostBinding, Injector, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, timer } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
-import { ProjectService } from '../../services/project/project.service';
-import { Project, ProjectType } from './../../models/project.model';
+import { CIService, JenkinsService, ProjectService } from '../../services';
+import { CIJob, CIJobStatus, Project, ProjectType } from './../../models';
 
 @Component({
   selector: 'ci-project',
@@ -14,13 +14,31 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
 
+  private ciJob: CIJob = {
+    status: CIJobStatus.NotInitialized
+  };
+
   @Input()
   public id = 0;
 
   public project: Project;
 
+  @HostBinding('class')
+  public get getStatusClass(): string {
+    let result = 'not-initialized';
+    const status = this.ciJob.status;
+    if (status === CIJobStatus.Success) {
+      result = 'success';
+    }
+    if (status === CIJobStatus.Failure) {
+      result = 'failure';
+    }
+    return result;
+  }
+
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private injector: Injector
   ) {
     this.project = this.createEmptyProject();
   }
@@ -29,19 +47,37 @@ export class ProjectComponent implements OnInit, OnDestroy {
     return {
       id: -1,
       name: 'No Data',
-      type: ProjectType.Jenkins
+      type: ProjectType.Jenkins,
+      ciJobKey: ''
     };
   }
 
   private subscribeCIJobData(): void {
-    const service;
-    service.getJob()
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe(cijob => {
+    const ciJobKey = this.project.ciJobKey;
+    if (!ciJobKey) {
+      return;
+    }
+    const service = this.getCIJobService();
+    const subscription = timer(0, 10000).pipe(
+      takeUntil(this.unsubscribe$)
+    );
+    subscription.subscribe(() => {
+      service.getJob(ciJobKey)
+        .pipe(
+          takeUntil(this.unsubscribe$)
+        )
+        .subscribe(ciJob => this.ciJob = ciJob);
+    });
+  }
 
-      });
+  private getCIJobService(): CIService {
+    const project = this.project;
+    const type = project.type;
+    if (type === ProjectType.Jenkins) {
+      return this.injector.get(JenkinsService);
+    } else {
+      throw new Error('Service not implemented.');
+    }
   }
 
   public ngOnInit(): void {

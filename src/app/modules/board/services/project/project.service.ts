@@ -6,17 +6,17 @@ import { Project, ProjectType } from '../../models/project.model';
 @Injectable()
 export class ProjectService {
 
-  private projects: Project[] = [];
-
-  constructor() {
-    for (let i = 0; i < 10; i++) {
-      this.projects.push({
-        id: i,
-        name: `Test project ${i}`,
-        type: ProjectType.Jenkins
-      });
-    }
-  }
+  private projects: Project[] = [{
+    id: 0,
+    name: 'app.studio-enterprise.relationship-diagram',
+    type: ProjectType.Jenkins,
+    ciJobKey: 'app.studio-enterprise.relationship-diagram'
+  }, {
+    id: 1,
+    name: 'lib.sdk.process-diagram',
+    type: ProjectType.Jenkins,
+    ciJobKey: 'lib.sdk.process-diagram'
+  }];
 
   public getProjects(): Observable<Project[]> {
     return of(this.projects);

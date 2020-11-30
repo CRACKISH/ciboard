@@ -1,7 +1,7 @@
 export enum CIJobStatus {
   NotInitialized,
-  Successful,
-  Faulty
+  Success,
+  Failure
 }
 
 export interface CIJob {

@@ -7,4 +7,5 @@ export interface Project {
   id: number;
   name: string;
   type: ProjectType;
+  ciJobKey: string;
 }
