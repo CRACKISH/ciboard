@@ -64,6 +64,24 @@
       true,
       "as-needed"
     ],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "external imports",
+            "match": "^[^\\.]",
+            "order": 0
+          },
+          {
+            "name": "internal imports",
+            "match": "^\\.",
+            "order": 1
+          }
+        ]
+      }
+    ],
     "quotemark": [
       true,
       "single"
@@ -139,13 +157,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "ci",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "ci",
       "kebab-case"
     ]
   }
