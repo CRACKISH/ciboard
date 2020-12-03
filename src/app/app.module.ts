@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppShellComponent } from './components/';
 import { BoardModule } from './modules/board';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppShellComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +19,6 @@ import { BoardModule } from './modules/board';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppShellComponent]
 })
 export class AppModule { }
