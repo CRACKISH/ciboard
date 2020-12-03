@@ -1,0 +1,20 @@
+<mat-list>
+  <mat-list-item *ngFor="let project of projects">
+    <div class='project-wrap'>
+      <div class='title'>{{project.name}}</div>
+      <div class="actions">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editProject(project.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-menu-item (click)="deleteProject(project.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>

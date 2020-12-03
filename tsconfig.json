@@ -22,7 +22,8 @@
     ],
     "paths": {
       "@common-api": ["src/app/modules/common-api"],
-      "@board": ["src/app/modules/board"]
+      "@board": ["src/app/modules/board"],
+      "@projects": ["src/app/modules/projects"]
     }
   },
   "angularCompilerOptions": {

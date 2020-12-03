@@ -4,7 +4,7 @@ import { Subject, timer } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'ci-project',
+  selector: 'ci-board-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
