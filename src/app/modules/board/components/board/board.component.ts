@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Project, ProjectService } from '@common-api';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { ProjectService } from '../../services';
-import { Project } from './../../models';
 
 @Component({
   selector: 'ci-board',

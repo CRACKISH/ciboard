@@ -1,9 +1,7 @@
 import { Component, HostBinding, Injector, Input, OnDestroy, OnInit } from '@angular/core';
+import { CIJob, CIJobStatus, CIProviderType, CIService, JenkinsService, Project, ProjectService } from '@common-api';
 import { Subject, timer } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-
-import { CIService, JenkinsService, ProjectService } from '../../services';
-import { CIJob, CIJobStatus, Project, ProjectType } from './../../models';
 
 @Component({
   selector: 'ci-project',
@@ -47,7 +45,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     return {
       id: -1,
       name: 'No Data',
-      type: ProjectType.Jenkins,
+      providerType: CIProviderType.Jenkins,
       ciJobKey: ''
     };
   }
@@ -72,8 +70,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   private getCIJobService(): CIService {
     const project = this.project;
-    const type = project.type;
-    if (type === ProjectType.Jenkins) {
+    const type = project.providerType;
+    if (type === CIProviderType.Jenkins) {
       return this.injector.get(JenkinsService);
     } else {
       throw new Error('Service not implemented.');

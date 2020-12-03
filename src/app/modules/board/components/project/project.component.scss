@@ -1,7 +1,7 @@
 :host {
   display: block;
   min-height: 50px;
-  min-width: 150px;
+  min-width: 350px;
   border: 1px solid black;
 
   &.not-initialized {
@@ -18,5 +18,9 @@
 }
 
 .caption-wrap {
-  text-align: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }

@@ -1,0 +1,22 @@
+{
+  "projects": [{
+    "id": 0,
+    "name": "app.studio-enterprise.relationship-diagram",
+    "providerType": 0,
+    "ciJobKey": "app.studio-enterprise.relationship-diagram"
+  }, {
+    "id": 1,
+    "name": "lib.sdk.process-diagram",
+    "providerType": 0,
+    "ciJobKey": "lib.sdk.process-diagram"
+  }],
+  "settings": {
+    "providers": [{
+      "name": "Jenkins",
+      "type": 0,
+      "login": "",
+      "password": "",
+      "serviceUrl": ""
+    }]
+  }
+}

@@ -1,22 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { CommonApiModule } from './../common-api/common-api.module';
 import { BoardRoutingModule } from './board-routing.module';
 import { BoardComponent, ProjectComponent } from './components/';
-import { JenkinsService, ProjectService } from './services/';
 
 @NgModule({
   imports: [
     CommonModule,
-    BoardRoutingModule
+    BoardRoutingModule,
+    CommonApiModule
   ],
   declarations: [
     BoardComponent,
     ProjectComponent
-  ],
-  providers: [
-    JenkinsService,
-    ProjectService
   ]
 })
 export class BoardModule {}
