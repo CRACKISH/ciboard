@@ -1,15 +1,16 @@
-FROM node:13.3.0 AS compile-image
+FROM node:12.20.0 AS compile-image
 
-WORKDIR /
-COPY package.json package-lock.json ./
+WORKDIR /app
+RUN ls
+COPY package*.json /app/
 RUN npm i
 
-COPY . .
-RUN ng build --prod
+COPY ./ /app/
+RUN npm run build --prod
 
 FROM nginx
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=compile-image /dist/ciboard /usr/share/nginx/html
+COPY --from=compile-image /app/dist/ciboard /usr/share/nginx/html
 
 EXPOSE 80
 CMD [ "npm", "run", "api"]
