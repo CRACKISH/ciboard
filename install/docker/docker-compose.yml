@@ -1,0 +1,16 @@
+version: "2"
+services:
+  ciboard:
+    image: crackish/ciboard
+    ports:
+      - "7800:80"
+    depends_on:
+      - server
+    restart: always
+    networks:
+      - ciboard
+  server:
+    image: crackish/ciboard-json-server
+    restart: always
+    networks:
+      - ciboard
