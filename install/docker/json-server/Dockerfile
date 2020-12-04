@@ -11,4 +11,4 @@ RUN npm install -g json-server
 
 EXPOSE 3000
 
-ENTRYPOINT [ "json-server", "data/db.json", "--routes data/routes.json", "--no-cors=true" ]
+ENTRYPOINT [ "json-server", "data/db.json", "--routes data/routes.json", "--host", "0.0.0.0", "--no-cors=true" ]
